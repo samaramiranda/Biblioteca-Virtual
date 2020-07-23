@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Biblioteca</title>
+</head>
+
+<body>
+  <header>Biblioteca Virtual</header>
+  <section>
+    <div id="cadastro">
+      <h3>Cadastre um livro</h3>
+      <label for="nomelivro">Digite o nome do livro:</label>
+      <input type="text" name="nomelivro" id="nomelivro">
+      <label for="autorlivro">Digite o autor do livro:</label>
+      <input type="text" name="autorlivro" id="autorlivro">
+      <label for="editoralivro">Digite a editora do livro:</label>
+      <input type="text" name="editoralivro" id="editoralivro">
+      <label for="qtepag">Digite a quantidade de páginas:</label>
+      <input type="text" name="qtepag" id="qtepag">
+      <label for="capa">Insira o link da capa:</label>
+      <input type="text" name="capa" id="capa">
+      <button onclick="cadastrar()">Cadastre</button>
+    </div>
+
+    <div id="busca">
+      <h3>Busque um livro</h3>
+      <label for="nomeBusca">Digite o livro que deseja procurar:</label>
+      <input type="text" name="nomeBusca" id="nomeBusca">
+      <button onclick="buscar()">Buscar</button>
+      <div id="resulBusca"></div>
+    </div>
+
+    <div id="todosLivros">
+      <h3>Todos os Livros</h3>
+    </div>
+  </section>
+
+  <script src="/biblioteca.js"></script>
+</body>
+
+</html>

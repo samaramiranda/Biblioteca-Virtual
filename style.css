@@ -1,0 +1,115 @@
+body {
+  background-color: rgb(0, 114, 114);
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  font-size: 35px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+  color: white;
+}
+
+section {
+  background-color: rgb(207, 207, 207);
+  border-radius: 8px;
+  width: 790px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.493);
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+div#cadastro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+div#cadastro input+label {
+  margin-top: 10px;
+}
+
+label {
+  font-size: 14px;
+}
+
+input {
+  margin-top: 2px;
+  border-radius: 4px;
+  border: none;
+  padding: 4px;
+  background-color: rgb(255, 255, 255);
+  width: 300px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.493);
+}
+
+button {
+  margin-top: 10px;
+  border-radius: 4px;
+  border: none;
+  background-color: rgb(32, 126, 126);
+  color: white;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+div#busca {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div#busca div div {
+  display: inline-grid;
+  background-color: rgb(255, 255, 255);
+  font-size: 14px;
+  max-height: 300px;
+  min-width: 150px;
+  padding: 10px;
+  text-align: center;
+  margin: 12px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.493);
+}
+
+div#busca div div img {
+  height: 115px;
+  width: 80px;
+  padding: 10px;
+  margin: auto;
+}
+
+div#todosLivros div {
+  display: inline-grid;
+  background-color: rgb(255, 255, 255);
+  font-size: 14px;
+  max-height: 300px;
+  min-width: 153px;
+  padding: 10px;
+  text-align: center;
+  margin: 12px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.493);
+  color: rgb(85, 85, 85);
+  font-family: 'Lora', serif;
+  font-weight: 600;
+}
+
+
+div#todosLivros img {
+  height: 115px;
+  width: 80px;
+  padding: 10px;
+  margin: auto;
+}
