@@ -81,6 +81,9 @@ div#busca div div {
   margin: 12px;
   border-radius: 8px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.493);
+  color: rgb(85, 85, 85);
+  font-family: 'Lora', serif;
+  font-weight: 600;
 }
 
 div#busca div div img {
