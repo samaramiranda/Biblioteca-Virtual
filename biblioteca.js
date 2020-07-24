@@ -1,6 +1,7 @@
 var todosLivros = []
 var sinopse = document.getElementById("sinop")
 var modal = document.getElementById("myModal");
+var contentModel = document.getElementById("contentModel")
 var span = document.getElementById("close");
 var txtSinopse = document.getElementById("txtSinopse")
 var campos = document.querySelectorAll("input")
@@ -11,6 +12,7 @@ function limpar() {
   campos.forEach(function (elem) {
     elem.value = ""
   })
+  sinopse.value = ""
 }
 
 function showSinopse(event) {
@@ -19,6 +21,12 @@ function showSinopse(event) {
     txtSinopse.innerHTML = sinopse.value
     modal.style.display = "block";
   }
+}
+
+function showError() {
+  tituloModal.innerHTML = "Nenhum livro com esse nome encontrado!"
+  contentModel.style.width = "50%"
+  modal.style.display = "block";
 }
 
 function closeModal(event) {
@@ -47,7 +55,6 @@ function cadastrar() {
   let cardLivro = document.createElement("div")
   let imgCapa = document.createElement("img")
   let btn = document.createElement("button")
-
 
   cardLivro.innerHTML = `Nome: ${nome}
   <br>Autor: ${autor}
@@ -101,9 +108,10 @@ function buscar() {
       resulBusca.appendChild(cardLivro)
       cardLivro.appendChild(imgCapa)
       cardLivro.appendChild(btn)
+    } else {
+      showError()
     }
   })
-
 
   divBusca.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
