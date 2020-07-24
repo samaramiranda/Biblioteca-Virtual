@@ -52,6 +52,14 @@ input {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.493);
 }
 
+textarea {
+  margin-top: 2px;
+  border-radius: 4px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.493);
+}
+
 button {
   margin-top: 10px;
   border-radius: 4px;
@@ -61,6 +69,11 @@ button {
   padding: 5px;
   font-weight: bold;
   font-size: 15px;
+}
+
+button:hover{
+  background-color: rgb(12, 73, 73);
+  cursor: pointer;
 }
 
 div#busca {
@@ -109,10 +122,54 @@ div#todosLivros div {
   font-weight: 600;
 }
 
-
 div#todosLivros img {
   height: 115px;
   width: 80px;
   padding: 10px;
   margin: auto;
+}
+
+#btn {
+  margin-top: 0px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 61%; /* Could be more or less, depending on screen size */
+  border-radius: 8px;
+
+}
+
+/* The Close Button */
+#close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+ 
+}
+
+#close:hover,
+#close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

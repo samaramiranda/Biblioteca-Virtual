@@ -15,17 +15,27 @@
   <section>
     <div id="cadastro">
       <h3>Cadastre um livro</h3>
-      <label for="nomelivro">Digite o nome do livro:</label>
+      <label for="nomelivro">Insira o nome do livro:</label>
       <input type="text" name="nomelivro" id="nomelivro">
-      <label for="autorlivro">Digite o autor do livro:</label>
+      <label for="autorlivro">Insira o autor do livro:</label>
       <input type="text" name="autorlivro" id="autorlivro">
-      <label for="editoralivro">Digite a editora do livro:</label>
+      <label for="editoralivro">Insira a editora do livro:</label>
       <input type="text" name="editoralivro" id="editoralivro">
-      <label for="qtepag">Digite a quantidade de páginas:</label>
+      <label for="qtepag">Insira a quantidade de páginas:</label>
       <input type="text" name="qtepag" id="qtepag">
       <label for="capa">Insira o link da capa:</label>
       <input type="text" name="capa" id="capa">
+      <label for="sinop">Insira a sinopse:</label>
+      <textarea name="sinop" id="sinop" cols="50" rows="10"></textarea>
       <button onclick="cadastrar()">Cadastre</button>
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span id="close">&times;</span>
+        <h3>Sinopse</h3>
+        <p id="txtSinopse">Some text in the Modal..</p>
+      </div>
     </div>
 
     <div id="busca">
