@@ -12,7 +12,6 @@ function limpar() {
   campos.forEach(function (elem) {
     elem.value = ""
   })
-  sinopse.value = ""
 }
 
 function showSinopse(event) {
@@ -25,6 +24,7 @@ function showSinopse(event) {
 
 function showError() {
   tituloModal.innerHTML = "Nenhum livro com esse nome encontrado!"
+  txtSinopse.innerHTML = ""
   contentModel.style.width = "50%"
   modal.style.display = "block";
 }
