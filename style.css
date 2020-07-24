@@ -106,6 +106,12 @@ div#busca div div img {
   margin: auto;
 }
 
+div#todosLivros p{
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
 div#todosLivros div {
   display: inline-grid;
   background-color: rgb(255, 255, 255);
@@ -129,7 +135,7 @@ div#todosLivros img {
   margin: auto;
 }
 
-#btn {
+button #btn {
   margin-top: 0px;
 }
 

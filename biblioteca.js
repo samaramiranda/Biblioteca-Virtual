@@ -2,13 +2,27 @@ var todosLivros = []
 var sinopse = document.getElementById("sinop")
 var modal = document.getElementById("myModal");
 var span = document.getElementById("close");
-var txtSinopse =  document.getElementById("txtSinopse")
+var txtSinopse = document.getElementById("txtSinopse")
 var campos = document.querySelectorAll("input")
+var msgLivros = document.getElementById("msgLivros")
+var tituloModal = document.getElementById("tituloModal")
 
-function limpar(){
+function limpar() {
   campos.forEach(function (elem) {
     elem.value = ""
   })
+}
+
+function showSinopse(event) {
+  if (event.target.id == "btn") {
+    tituloModal.innerHTML = "Sinopse"
+    txtSinopse.innerHTML = sinopse.value
+    modal.style.display = "block";
+  }
+}
+
+function closeModal(event) {
+  modal.style.display = "none";
 }
 
 function cadastrar() {
@@ -29,6 +43,7 @@ function cadastrar() {
       sinopse: sinopse
     })
 
+  msgLivros.innerHTML = ""
   let cardLivro = document.createElement("div")
   let imgCapa = document.createElement("img")
   let btn = document.createElement("button")
@@ -48,24 +63,6 @@ function cadastrar() {
   cardLivro.appendChild(imgCapa)
   cardLivro.appendChild(btn)
 
-  limpar()
-
-  // let campos = document.querySelectorAll("input")
-  // campos.forEach(function (elem) {
-  //   elem.value = ""
-  // })
-
-  function showSinopse(event) {
-    if (event.target.id == "btn") {
-      txtSinopse.innerHTML = sinopse.value
-      modal.style.display = "block";
-      // alert(sinopse.value)
-    }
-  }
-
-  function closeModal(event) {
-    modal.style.display = "none";
-  }
 
   divLivros.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
@@ -74,6 +71,8 @@ function cadastrar() {
       modal.style.display = "none";
     }
   }
+
+  limpar()
 }
 
 function buscar() {
@@ -102,28 +101,9 @@ function buscar() {
       resulBusca.appendChild(cardLivro)
       cardLivro.appendChild(imgCapa)
       cardLivro.appendChild(btn)
-
     }
   })
 
-
-
-  // let campos = document.querySelectorAll("input")
-  // campos.forEach(function (elem) {
-  //   elem.value = ""
-  // })
-
-  function showSinopse(event) {
-    if (event.target.id == "btn") {
-      txtSinopse.innerHTML = sinopse.value
-      modal.style.display = "block";
-      // alert(sinopse.value)
-    }
-  }
-
-  function closeModal(event) {
-    modal.style.display = "none";
-  }
 
   divBusca.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
