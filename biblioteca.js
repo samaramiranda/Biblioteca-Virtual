@@ -24,8 +24,8 @@ function showSinopse(event) {
   }
 }
 
-function showError() {
-  tituloModal.innerHTML = "Nenhum livro com esse nome encontrado!"
+function showError(nomeLivro) {
+  tituloModal.innerHTML = `Livro "${nomeLivro}" não encontrado!`
   txtSinopse.innerHTML = ""
   contentModel.style.width = "50%"
   modal.style.display = "block"
@@ -113,7 +113,7 @@ function buscar() {
       cardLivro.appendChild(imgCapa)
       cardLivro.appendChild(btn)
     } else {
-      showError()
+      showError(livro)
     }
   })
 
