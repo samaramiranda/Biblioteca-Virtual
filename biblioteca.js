@@ -1,24 +1,26 @@
 var todosLivros = []
 var sinopse = document.getElementById("sinop")
-var modal = document.getElementById("myModal");
+var modal = document.getElementById("myModal")
 var contentModel = document.getElementById("contentModel")
-var span = document.getElementById("close");
+var span = document.getElementById("close")
 var txtSinopse = document.getElementById("txtSinopse")
 var campos = document.querySelectorAll("input")
 var msgLivros = document.getElementById("msgLivros")
 var tituloModal = document.getElementById("tituloModal")
+var valueSinopse = ""
 
 function limpar() {
   campos.forEach(function (elem) {
     elem.value = ""
   })
+  sinopse.value = ""
 }
 
 function showSinopse(event) {
   if (event.target.id == "btn") {
     tituloModal.innerHTML = "Sinopse"
-    txtSinopse.innerHTML = sinopse.value
-    modal.style.display = "block";
+    txtSinopse.innerHTML = valueSinopse
+    modal.style.display = "block"
   }
 }
 
@@ -26,11 +28,11 @@ function showError() {
   tituloModal.innerHTML = "Nenhum livro com esse nome encontrado!"
   txtSinopse.innerHTML = ""
   contentModel.style.width = "50%"
-  modal.style.display = "block";
+  modal.style.display = "block"
 }
 
 function closeModal(event) {
-  modal.style.display = "none";
+  modal.style.display = "none"
 }
 
 function cadastrar() {
@@ -39,7 +41,9 @@ function cadastrar() {
   let editora = document.getElementById("editoralivro").value
   let paginas = Number(document.getElementById("qtepag").value)
   let capalivro = document.getElementById("capa").value
-  let divLivros = document.getElementById("todosLivros")
+  let divLivros = document.getElementById("todosLivros")  
+
+  valueSinopse = sinopse.value
 
   todosLivros.push(
     livro = {
@@ -117,7 +121,7 @@ function buscar() {
   span.addEventListener("click", closeModal)
   window.onclick = function (event) {
     if (event.target == modal) {
-      modal.style.display = "none";
+      modal.style.display = "none"
     }
   }
 
