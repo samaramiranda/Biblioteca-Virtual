@@ -41,12 +41,12 @@ function cadastrar() {
   let editora = document.getElementById("editoralivro").value
   let paginas = Number(document.getElementById("qtepag").value)
   let capalivro = document.getElementById("capa").value
-  let divLivros = document.getElementById("todosLivros")  
+  let divLivros = document.getElementById("todosLivros")
 
   valueSinopse = sinopse.value
 
   todosLivros.push(
-    livro = {
+    {
       nomeLivro: nome,
       autorLivro: autor,
       editoraLivro: editora,
@@ -59,20 +59,43 @@ function cadastrar() {
   let cardLivro = document.createElement("div")
   let imgCapa = document.createElement("img")
   let btn = document.createElement("button")
+  let btnRemove = document.createElement("button")
 
   cardLivro.innerHTML = `Nome: ${nome}
   <br>Autor: ${autor}
   <br>Editora: ${editora}
   <br>Págs: ${paginas} `
 
+  cardLivro.id = todosLivros.length-1
+  cardLivro.className = "cardLivro"
+
+  console.log(nome)
+
   imgCapa.src = capalivro
   btn.innerHTML = "Sinopse"
   btn.id = "btn"
 
+  btnRemove.innerHTML = "Remover"
+  btnRemove.id = "btnRemove"
 
   divLivros.appendChild(cardLivro)
   cardLivro.appendChild(imgCapa)
   cardLivro.appendChild(btn)
+  cardLivro.appendChild(btnRemove)
+
+  function removerCard(event){
+    if(event.target.id == "btnRemove"){
+      // let livroClick = 
+      divLivros.removeChild(event.target.parentNode)
+      console.log(event.target.parentNode)
+      console.log("clicou remover")
+      console.log(btnRemove.parentNode.id)
+      // console.log(document.querySelectorAll(".cardLivro")[btnRemove.parentNode.id])
+
+    }
+  }
+
+  divLivros.addEventListener("click", removerCard)
 
 
   divLivros.addEventListener("click", showSinopse)
@@ -82,6 +105,9 @@ function cadastrar() {
       modal.style.display = "none";
     }
   }
+
+  console.log(todosLivros)
+  // console.log(cardLivro)
 
   limpar()
 }
