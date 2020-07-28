@@ -67,7 +67,6 @@ function cadastrar() {
   <br>Págs: ${paginas} `
 
   cardLivro.id = todosLivros.length-1
-  cardLivro.className = "cardLivro"
 
   console.log(nome)
 
@@ -85,13 +84,11 @@ function cadastrar() {
 
   function removerCard(event){
     if(event.target.id == "btnRemove"){
-      // let livroClick = 
       divLivros.removeChild(event.target.parentNode)
-      console.log(event.target.parentNode)
-      console.log("clicou remover")
-      console.log(btnRemove.parentNode.id)
-      // console.log(document.querySelectorAll(".cardLivro")[btnRemove.parentNode.id])
 
+      if(todosLivros.splice([event.target.parentNode.id], 1)){
+        alert(`Livro removido!`)
+      }
     }
   }
 
@@ -105,9 +102,6 @@ function cadastrar() {
       modal.style.display = "none";
     }
   }
-
-  console.log(todosLivros)
-  // console.log(cardLivro)
 
   limpar()
 }
