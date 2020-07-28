@@ -54,7 +54,7 @@ function cadastrar() {
       capaLivro: capalivro,
       sinopse: sinopse.value
     })
-    
+
 
   msgLivros.innerHTML = ""
   let cardLivro = document.createElement("div")
@@ -67,7 +67,7 @@ function cadastrar() {
   <br>Editora: ${editora}
   <br>Págs: ${paginas} `
 
-  cardLivro.id = todosLivros.length-1
+  cardLivro.id = todosLivros.length - 1
 
   console.log(nome)
 
@@ -83,18 +83,18 @@ function cadastrar() {
   cardLivro.appendChild(btn)
   cardLivro.appendChild(btnRemove)
 
-  function removerCard(event){
-    if(event.target.id == "btnRemove"){
+  function removerCard(event) {
+    if (event.target.id == "btnRemove") {
       divLivros.removeChild(event.target.parentNode)
-
-      if(todosLivros.splice([event.target.parentNode.id], 1)){
-        alert(`Livro removido!`)
+      if (confirm("Tem certeza que deseja remover este livro?")) {
+        if (todosLivros.splice([event.target.parentNode.id], 1)) {
+          alert(`Livro removido!`)
+        }
       }
     }
   }
 
   divLivros.addEventListener("click", removerCard)
-
 
   divLivros.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
@@ -121,13 +121,13 @@ function buscar() {
   var encontra = 0
 
   todosLivros.forEach(function (elem) {
-    if (livro == elem.nomeLivro){
+    if (livro == elem.nomeLivro) {
       encontra = 1
       cardLivro.innerHTML = `Nome: ${elem.nomeLivro}
       <br>Autor: ${elem.autorLivro}
       <br>Editora: ${elem.editoraLivro}
       <br>Págs: ${elem.paginasLivro}`
-  
+
       imgCapa.src = elem.capaLivro
       btn.innerHTML = "Sinopse"
       btn.id = "btn"
@@ -138,18 +138,16 @@ function buscar() {
     resulBusca.appendChild(cardLivro)
     cardLivro.appendChild(imgCapa)
     cardLivro.appendChild(btn)
+
+    divBusca.addEventListener("click", showSinopse)
+    span.addEventListener("click", closeModal)
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none"
+      }
+    }
   } else {
     showError(livro)
   }
-
-
-  divBusca.addEventListener("click", showSinopse)
-  span.addEventListener("click", closeModal)
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none"
-    }
-  }
-
   limpar()
 }
