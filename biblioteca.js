@@ -19,7 +19,7 @@ function limpar() {
 function showSinopse(event) {
   if (event.target.id == "btn") {
     tituloModal.innerHTML = "Sinopse"
-    txtSinopse.innerHTML = valueSinopse
+    txtSinopse.innerHTML = todosLivros[event.target.parentNode.id].sinopse
     modal.style.display = "block"
   }
 }
@@ -52,8 +52,9 @@ function cadastrar() {
       editoraLivro: editora,
       paginasLivro: paginas,
       capaLivro: capalivro,
-      sinopse: sinopse
+      sinopse: sinopse.value
     })
+    
 
   msgLivros.innerHTML = ""
   let cardLivro = document.createElement("div")
