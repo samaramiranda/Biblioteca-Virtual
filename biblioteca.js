@@ -111,32 +111,37 @@ function buscar() {
   let livro = document.getElementById("nomeBusca").value
   let divBusca = document.getElementById("busca")
   let resulBusca = document.getElementById("resulBusca")
+  let cardLivro = document.createElement("div")
+  let imgCapa = document.createElement("img")
+  let btn = document.createElement("button")
 
   resulBusca.innerHTML = ""
   divBusca.appendChild(resulBusca)
 
-  todosLivros.forEach(function (elem) {
-    if (livro == elem.nomeLivro) {
-      let cardLivro = document.createElement("div")
-      let imgCapa = document.createElement("img")
-      let btn = document.createElement("button")
+  var encontra = 0
 
+  todosLivros.forEach(function (elem) {
+    if (livro == elem.nomeLivro){
+      encontra = 1
       cardLivro.innerHTML = `Nome: ${elem.nomeLivro}
       <br>Autor: ${elem.autorLivro}
       <br>Editora: ${elem.editoraLivro}
       <br>Págs: ${elem.paginasLivro}`
-
+  
       imgCapa.src = elem.capaLivro
       btn.innerHTML = "Sinopse"
       btn.id = "btn"
-
-      resulBusca.appendChild(cardLivro)
-      cardLivro.appendChild(imgCapa)
-      cardLivro.appendChild(btn)
-    } else {
-      showError(livro)
     }
   })
+
+  if (encontra == 1) {
+    resulBusca.appendChild(cardLivro)
+    cardLivro.appendChild(imgCapa)
+    cardLivro.appendChild(btn)
+  } else {
+    showError(livro)
+  }
+
 
   divBusca.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
