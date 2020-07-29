@@ -86,15 +86,15 @@ function cadastrar() {
   function removerCard(event) {
     if (event.target.id == "btnRemove") {
       divLivros.removeChild(event.target.parentNode)
-      if (confirm("Tem certeza que deseja remover este livro?")) {
-        if (todosLivros.splice([event.target.parentNode.id], 1)) {
-          alert(`Livro removido!`)
-        }
+
+      if (todosLivros.splice([event.target.parentNode.id], 1)) {
+        alert(`Livro removido!`)
       }
     }
   }
 
   divLivros.addEventListener("click", removerCard)
+
 
   divLivros.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
@@ -119,10 +119,12 @@ function buscar() {
   divBusca.appendChild(resulBusca)
 
   var encontra = 0
+  var count = 0
 
   todosLivros.forEach(function (elem) {
     if (livro == elem.nomeLivro) {
       encontra = 1
+      console.log(cardLivro.id = count)
       cardLivro.innerHTML = `Nome: ${elem.nomeLivro}
       <br>Autor: ${elem.autorLivro}
       <br>Editora: ${elem.editoraLivro}
@@ -132,6 +134,7 @@ function buscar() {
       btn.innerHTML = "Sinopse"
       btn.id = "btn"
     }
+    count++
   })
 
   if (encontra == 1) {
