@@ -15,9 +15,9 @@ Nele é possível cadastrar os seguintes dados sobre os livros:
 - Sinopse.
 
 Após o usuário clicar em "Cadastrar" o livro vai para a categoria de "Todos os Livros" onde são exibidos cards com cada livro já cadastrado.
-Nessa categoria é possível o usuário ver as informações cadastradas sobre cada um dos livros, clicando em "Sinopse" é exibido na tela um model contendo a sinopse referente àquele livro. Caso o usuário deseje excluir um dos livros cadastrados é só clicar em "Remover" que o site apresenta uma caixa de confirmação, se confirmado o livro é removido da lista de livros cadastrados.
+Nessa categoria é possível o usuário ver as informações cadastradas sobre cada um dos livros, clicando em "Sinopse" é exibido na tela um modal contendo a sinopse referente àquele livro. Caso o usuário deseje excluir um dos livros cadastrados é só clicar em "Remover" que o site apresenta uma caixa de confirmação, se confirmado o livro é removido da lista de livros cadastrados.
 
-Na categoria de "Busca" o usuário digita no campo o livro que deseja buscar, caso sejam encontrados livros com esse nome todos eles são exibidos em cards na categoria de "Busca", se não existir nenhum livro com o nome buscado é apresentado um model na tela informando que não foi encontrado.
+Na categoria de "Busca" o usuário digita no campo o livro que deseja buscar, caso sejam encontrados livros com esse nome todos eles são exibidos em cards na categoria de "Busca", se não existir nenhum livro com o nome buscado é apresentado um modal na tela informando que não foi encontrado.
 
 
 ## :computer: Tecnologias usadas:
