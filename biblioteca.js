@@ -1,13 +1,17 @@
-var todosLivros = []
-var sinopse = document.getElementById("sinop")
-var modal = document.getElementById("myModal")
-var contentModel = document.getElementById("contentModel")
-var span = document.getElementById("close")
-var txtSinopse = document.getElementById("txtSinopse")
-var campos = document.querySelectorAll("input")
-var msgLivros = document.getElementById("msgLivros")
-var tituloModal = document.getElementById("tituloModal")
-var valueSinopse = ""
+let todosLivros = []
+const campos = document.querySelectorAll("input")
+const divLivros = document.querySelector("#todosLivros")
+const nenhumLivro = document.querySelector("#nenhumLivro")
+const modal = document.querySelector("#myModal")
+const tituloModal = document.querySelector("#tituloModal")
+const contentModel = document.querySelector("#contentModel")
+const span = document.querySelector("#close")
+const sinopse = document.querySelector("#sinop")
+const txtSinopse = document.querySelector("#txtSinopse")
+
+function buscarLivro() {
+  return todosLivros.findIndex((elem) => elem.nomeLivro == (event.target.parentNode.className))
+}
 
 function limpar() {
   campos.forEach(function (elem) {
@@ -19,7 +23,7 @@ function limpar() {
 function showSinopse(event) {
   if (event.target.id == "btn") {
     tituloModal.innerHTML = "Sinopse"
-    txtSinopse.innerHTML = todosLivros[event.target.parentNode.id].sinopse
+    txtSinopse.innerHTML = todosLivros[buscarLivro()].sinopse
     modal.style.display = "block"
   }
 }
@@ -36,14 +40,11 @@ function closeModal(event) {
 }
 
 function cadastrar() {
-  let nome = document.getElementById("nomelivro").value
-  let autor = document.getElementById("autorlivro").value
-  let editora = document.getElementById("editoralivro").value
-  let paginas = Number(document.getElementById("qtepag").value)
-  let capalivro = document.getElementById("capa").value
-  let divLivros = document.getElementById("todosLivros")
-
-  valueSinopse = sinopse.value
+  const nome = document.getElementById("nomelivro").value
+  const autor = document.getElementById("autorlivro").value
+  const editora = document.getElementById("editoralivro").value
+  const paginas = Number(document.getElementById("qtepag").value)
+  const capalivro = document.getElementById("capa").value
 
   todosLivros.push(
     {
@@ -56,7 +57,7 @@ function cadastrar() {
     })
 
 
-  msgLivros.innerHTML = ""
+  nenhumLivro.innerHTML = ""
   let cardLivro = document.createElement("div")
   let imgCapa = document.createElement("img")
   let btn = document.createElement("button")
@@ -67,7 +68,8 @@ function cadastrar() {
   <br>Editora: ${editora}
   <br>Págs: ${paginas} `
 
-  cardLivro.id = todosLivros.length - 1
+  cardLivro.className = nome
+
 
   console.log(nome)
 
@@ -86,8 +88,7 @@ function cadastrar() {
   function removerCard(event) {
     if (event.target.id == "btnRemove") {
       divLivros.removeChild(event.target.parentNode)
-
-      if (todosLivros.splice([event.target.parentNode.id], 1)) {
+      if(todosLivros.splice(buscarLivro(), 1)){
         alert(`Livro removido!`)
       }
     }
@@ -119,12 +120,12 @@ function buscar() {
   divBusca.appendChild(resulBusca)
 
   var encontra = 0
-  var count = 0
 
   todosLivros.forEach(function (elem) {
     if (livro == elem.nomeLivro) {
       encontra = 1
-      console.log(cardLivro.id = count)
+
+      cardLivro.className = elem.nomeLivro
       cardLivro.innerHTML = `Nome: ${elem.nomeLivro}
       <br>Autor: ${elem.autorLivro}
       <br>Editora: ${elem.editoraLivro}
@@ -134,7 +135,6 @@ function buscar() {
       btn.innerHTML = "Sinopse"
       btn.id = "btn"
     }
-    count++
   })
 
   if (encontra == 1) {
@@ -152,5 +152,6 @@ function buscar() {
   } else {
     showError(livro)
   }
+
   limpar()
 }
