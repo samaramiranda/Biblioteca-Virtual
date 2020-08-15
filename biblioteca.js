@@ -13,6 +13,15 @@ function buscarLivro() {
   return todosLivros.findIndex((elem) => elem.nomeLivro == (event.target.parentNode.className))
 }
 
+function removerCard(event) {
+  if (event.target.id == "btnRemove") {
+    divLivros.removeChild(event.target.parentNode)
+    if (todosLivros.splice(buscarLivro(), 1)) {
+      alert(`Livro removido!`)
+    }
+  }
+}
+
 function limpar() {
   campos.forEach(function (elem) {
     elem.value = ""
@@ -37,6 +46,12 @@ function showError(nomeLivro) {
 
 function closeModal(event) {
   modal.style.display = "none"
+}
+
+function closeModalWindow(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
 }
 
 function cadastrar() {
@@ -70,9 +85,6 @@ function cadastrar() {
 
   cardLivro.className = nome
 
-
-  console.log(nome)
-
   imgCapa.src = capalivro
   btn.innerHTML = "Sinopse"
   btn.id = "btn"
@@ -85,26 +97,12 @@ function cadastrar() {
   cardLivro.appendChild(btn)
   cardLivro.appendChild(btnRemove)
 
-  function removerCard(event) {
-    if (event.target.id == "btnRemove") {
-      divLivros.removeChild(event.target.parentNode)
-      if(todosLivros.splice(buscarLivro(), 1)){
-        alert(`Livro removido!`)
-      }
-    }
-  }
-
   divLivros.addEventListener("click", removerCard)
-
 
   divLivros.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-
+  window.addEventListener("click", closeModalWindow)
+  
   limpar()
 }
 
@@ -144,11 +142,8 @@ function buscar() {
 
     divBusca.addEventListener("click", showSinopse)
     span.addEventListener("click", closeModal)
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none"
-      }
-    }
+    window.addEventListener("click", closeModalWindow)
+
   } else {
     showError(livro)
   }
