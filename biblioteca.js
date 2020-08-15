@@ -70,13 +70,12 @@ function appendElements(divSelect, cardLivro, imgCapa, btn, btnRemove) {
   span.addEventListener("click", closeModal)
   window.addEventListener("click", closeModalWindow)
 }
-
-function removeCard(divv) {
+function removeCard(parentDiv) {
   return function remove(event){
     if (event.target.id == "btnRemove") {
-      divv.removeChild(event.target.parentNode)
+      parentDiv.removeChild(event.target.parentNode)
       if (todosLivros.splice(buscarLivro(), 1)) {
-        alert(`Livro removido!`)
+        alert(`Livro "${event.target.parentNode.className}" removido com sucesso!`)
       }
     }
   }
@@ -100,7 +99,7 @@ function cadastrar() {
       sinopse: sinopse.value
     })
 
-  nenhumLivro.innerHTML = ""
+  nenhumLivro.remove()
   const cardLivro = document.createElement("div")
   const imgCapa = document.createElement("img")
   const btn = document.createElement("button")
