@@ -49,10 +49,34 @@ function closeModal(event) {
 }
 
 function closeModalWindow(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
+
+function criarCard(cardLivro, imgCapa, btn, nome, autor, editora, paginas, capa) {
+  cardLivro.className = nome
+  cardLivro.innerHTML = `
+    Nome: ${nome}
+    <br>Autor: ${autor}
+    <br>Editora: ${editora}
+    <br>Págs: ${paginas}
+    `
+  imgCapa.src = capa
+  btn.innerHTML = "Sinopse"
+  btn.id = "btn"
+}
+
+function appendElements(divSelect, cardLivro, imgCapa, btn) {
+  divSelect.appendChild(cardLivro)
+  cardLivro.appendChild(imgCapa)
+  cardLivro.appendChild(btn)
+
+  divSelect.addEventListener("click", showSinopse)
+  span.addEventListener("click", closeModal)
+  window.addEventListener("click", closeModalWindow)
+}
+
 
 function cadastrar() {
   const nome = document.getElementById("nomelivro").value
@@ -71,48 +95,32 @@ function cadastrar() {
       sinopse: sinopse.value
     })
 
-
   nenhumLivro.innerHTML = ""
-  let cardLivro = document.createElement("div")
-  let imgCapa = document.createElement("img")
-  let btn = document.createElement("button")
-  let btnRemove = document.createElement("button")
+  const cardLivro = document.createElement("div")
+  const imgCapa = document.createElement("img")
+  const btn = document.createElement("button")
+  const btnRemove = document.createElement("button")
 
-  cardLivro.innerHTML = `Nome: ${nome}
-  <br>Autor: ${autor}
-  <br>Editora: ${editora}
-  <br>Págs: ${paginas} `
-
-  cardLivro.className = nome
-
-  imgCapa.src = capalivro
-  btn.innerHTML = "Sinopse"
-  btn.id = "btn"
+  criarCard(cardLivro, imgCapa, btn, nome, autor, editora, paginas, capalivro)
 
   btnRemove.innerHTML = "Remover"
   btnRemove.id = "btnRemove"
 
-  divLivros.appendChild(cardLivro)
-  cardLivro.appendChild(imgCapa)
-  cardLivro.appendChild(btn)
+  appendElements(divLivros, cardLivro, imgCapa, btn)
+
   cardLivro.appendChild(btnRemove)
 
   divLivros.addEventListener("click", removerCard)
-
-  divLivros.addEventListener("click", showSinopse)
-  span.addEventListener("click", closeModal)
-  window.addEventListener("click", closeModalWindow)
-  
   limpar()
 }
 
 function buscar() {
-  let livro = document.getElementById("nomeBusca").value
-  let divBusca = document.getElementById("busca")
-  let resulBusca = document.getElementById("resulBusca")
-  let cardLivro = document.createElement("div")
-  let imgCapa = document.createElement("img")
-  let btn = document.createElement("button")
+  const livro = document.getElementById("nomeBusca").value
+  const divBusca = document.getElementById("busca")
+  const resulBusca = document.getElementById("resulBusca")
+  const cardLivro = document.createElement("div")
+  const imgCapa = document.createElement("img")
+  const btn = document.createElement("button")
 
   resulBusca.innerHTML = ""
   divBusca.appendChild(resulBusca)
@@ -122,28 +130,12 @@ function buscar() {
   todosLivros.forEach(function (elem) {
     if (livro == elem.nomeLivro) {
       encontra = 1
-
-      cardLivro.className = elem.nomeLivro
-      cardLivro.innerHTML = `Nome: ${elem.nomeLivro}
-      <br>Autor: ${elem.autorLivro}
-      <br>Editora: ${elem.editoraLivro}
-      <br>Págs: ${elem.paginasLivro}`
-
-      imgCapa.src = elem.capaLivro
-      btn.innerHTML = "Sinopse"
-      btn.id = "btn"
+      criarCard(cardLivro, imgCapa, btn, elem.nomeLivro, elem.autorLivro, elem.editoraLivro, elem.paginasLivro, elem.capaLivro)
     }
   })
 
   if (encontra == 1) {
-    resulBusca.appendChild(cardLivro)
-    cardLivro.appendChild(imgCapa)
-    cardLivro.appendChild(btn)
-
-    divBusca.addEventListener("click", showSinopse)
-    span.addEventListener("click", closeModal)
-    window.addEventListener("click", closeModalWindow)
-
+    appendElements(resulBusca, cardLivro, imgCapa, btn)
   } else {
     showError(livro)
   }
