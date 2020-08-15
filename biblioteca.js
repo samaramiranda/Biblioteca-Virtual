@@ -13,15 +13,6 @@ function buscarLivro() {
   return todosLivros.findIndex((elem) => elem.nomeLivro == (event.target.parentNode.className))
 }
 
-function removerCard(event) {
-  if (event.target.id == "btnRemove") {
-    divLivros.removeChild(event.target.parentNode)
-    if (todosLivros.splice(buscarLivro(), 1)) {
-      alert(`Livro removido!`)
-    }
-  }
-}
-
 function limpar() {
   campos.forEach(function (elem) {
     elem.value = ""
@@ -54,7 +45,7 @@ function closeModalWindow(event) {
   }
 }
 
-function criarCard(cardLivro, imgCapa, btn, nome, autor, editora, paginas, capa) {
+function criarCard(cardLivro, imgCapa, btn, btnRemove, nome, autor, editora, paginas, capa) {
   cardLivro.className = nome
   cardLivro.innerHTML = `
     Nome: ${nome}
@@ -65,16 +56,30 @@ function criarCard(cardLivro, imgCapa, btn, nome, autor, editora, paginas, capa)
   imgCapa.src = capa
   btn.innerHTML = "Sinopse"
   btn.id = "btn"
+  btnRemove.innerHTML = "Remover"
+  btnRemove.id = "btnRemove"
 }
 
-function appendElements(divSelect, cardLivro, imgCapa, btn) {
+function appendElements(divSelect, cardLivro, imgCapa, btn, btnRemove) {
   divSelect.appendChild(cardLivro)
   cardLivro.appendChild(imgCapa)
   cardLivro.appendChild(btn)
+  cardLivro.appendChild(btnRemove)
 
   divSelect.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
   window.addEventListener("click", closeModalWindow)
+}
+
+function removeCard(divv) {
+  return function remove(event){
+    if (event.target.id == "btnRemove") {
+      divv.removeChild(event.target.parentNode)
+      if (todosLivros.splice(buscarLivro(), 1)) {
+        alert(`Livro removido!`)
+      }
+    }
+  }
 }
 
 
@@ -101,16 +106,13 @@ function cadastrar() {
   const btn = document.createElement("button")
   const btnRemove = document.createElement("button")
 
-  criarCard(cardLivro, imgCapa, btn, nome, autor, editora, paginas, capalivro)
+  criarCard(cardLivro, imgCapa, btn, btnRemove, nome, autor, editora, paginas, capalivro)
 
-  btnRemove.innerHTML = "Remover"
-  btnRemove.id = "btnRemove"
+  appendElements(divLivros, cardLivro, imgCapa, btn, btnRemove)
 
-  appendElements(divLivros, cardLivro, imgCapa, btn)
+  const remove = removeCard(divLivros)
+  divLivros.addEventListener("click", remove)
 
-  cardLivro.appendChild(btnRemove)
-
-  divLivros.addEventListener("click", removerCard)
   limpar()
 }
 
@@ -121,24 +123,28 @@ function buscar() {
   const cardLivro = document.createElement("div")
   const imgCapa = document.createElement("img")
   const btn = document.createElement("button")
+  const btnRemove = document.createElement("button")
 
   resulBusca.innerHTML = ""
   divBusca.appendChild(resulBusca)
 
-  var encontra = 0
+  let encontra = 0
 
   todosLivros.forEach(function (elem) {
     if (livro == elem.nomeLivro) {
       encontra = 1
-      criarCard(cardLivro, imgCapa, btn, elem.nomeLivro, elem.autorLivro, elem.editoraLivro, elem.paginasLivro, elem.capaLivro)
+      criarCard(cardLivro, imgCapa, btn, btnRemove, elem.nomeLivro, elem.autorLivro, elem.editoraLivro, elem.paginasLivro, elem.capaLivro)
     }
   })
 
   if (encontra == 1) {
-    appendElements(resulBusca, cardLivro, imgCapa, btn)
+    appendElements(resulBusca, cardLivro, imgCapa, btn, btnRemove)
   } else {
     showError(livro)
   }
+  
+  const remove = removeCard(resulBusca)
+  divBusca.addEventListener("click", remove)
 
   limpar()
 }
