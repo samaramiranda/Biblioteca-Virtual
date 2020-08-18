@@ -85,6 +85,8 @@ function cadastrar() {
   const paginas = Number(document.getElementById("qtepag").value)
   const capalivro = document.getElementById("capa").value
 
+  event.preventDefault()
+
   todosLivros.push(
     {
       nomeLivro: nome,
