@@ -45,31 +45,27 @@ function closeModalWindow(event) {
   }
 }
 
-function criarCard(cardLivro, imgCapa, btn, btnRemove, nome, autor, editora, paginas, capa) {
+function criarCard(cardLivro, nome, autor, editora, paginas, capa) {
   cardLivro.className = nome
   cardLivro.innerHTML = `
     Nome: ${nome}
     <br>Autor: ${autor}
     <br>Editora: ${editora}
     <br>Págs: ${paginas}
+    <img src="${capa}"/>
+    <button id="btn">Sinopse</button>
+    <button id="btnRemove">Remover</button>
     `
-  imgCapa.src = capa
-  btn.innerHTML = "Sinopse"
-  btn.id = "btn"
-  btnRemove.innerHTML = "Remover"
-  btnRemove.id = "btnRemove"
 }
 
-function appendElements(divSelect, cardLivro, imgCapa, btn, btnRemove) {
+function appendElements(divSelect, cardLivro) {
   divSelect.append(cardLivro)
-  cardLivro.append(imgCapa)
-  cardLivro.append(btn)
-  cardLivro.append(btnRemove)
 
   divSelect.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
   window.addEventListener("click", closeModalWindow)
 }
+
 function removeCard(parentDiv) {
   return function remove(event){
     if (event.target.id == "btnRemove") {
@@ -105,7 +101,7 @@ function cadastrar() {
   const btn = document.createElement("button")
   const btnRemove = document.createElement("button")
 
-  criarCard(cardLivro, imgCapa, btn, btnRemove, nome, autor, editora, paginas, capalivro)
+  criarCard(cardLivro, nome, autor, editora, paginas, capalivro)
 
   appendElements(divLivros, cardLivro, imgCapa, btn, btnRemove)
 
@@ -131,8 +127,8 @@ function buscar() {
 
   if(findBook.length != 0){
     findBook.forEach(elem => {
-      criarCard(cardLivro, imgCapa, btn, btnRemove, elem.nomeLivro, elem.autorLivro, elem.editoraLivro, elem.paginasLivro, elem.capaLivro)
-      appendElements(resulBusca, cardLivro, imgCapa, btn, btnRemove)
+      criarCard(cardLivro, elem.nomeLivro, elem.autorLivro, elem.editoraLivro, elem.paginasLivro, elem.capaLivro)
+      appendElements(resulBusca, cardLivro)
     })
   }else{
     showError(livro)
