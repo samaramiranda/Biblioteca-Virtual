@@ -61,10 +61,10 @@ function criarCard(cardLivro, imgCapa, btn, btnRemove, nome, autor, editora, pag
 }
 
 function appendElements(divSelect, cardLivro, imgCapa, btn, btnRemove) {
-  divSelect.appendChild(cardLivro)
-  cardLivro.appendChild(imgCapa)
-  cardLivro.appendChild(btn)
-  cardLivro.appendChild(btnRemove)
+  divSelect.append(cardLivro)
+  cardLivro.append(imgCapa)
+  cardLivro.append(btn)
+  cardLivro.append(btnRemove)
 
   divSelect.addEventListener("click", showSinopse)
   span.addEventListener("click", closeModal)
@@ -125,23 +125,19 @@ function buscar() {
   const btnRemove = document.createElement("button")
 
   resulBusca.innerHTML = ""
-  divBusca.appendChild(resulBusca)
+  divBusca.append(resulBusca)
 
-  let encontra = 0
+  const findBook = todosLivros.filter(elem => elem.nomeLivro == livro)
 
-  todosLivros.forEach(function (elem) {
-    if (livro == elem.nomeLivro) {
-      encontra = 1
+  if(findBook.length != 0){
+    findBook.forEach(elem => {
       criarCard(cardLivro, imgCapa, btn, btnRemove, elem.nomeLivro, elem.autorLivro, elem.editoraLivro, elem.paginasLivro, elem.capaLivro)
-    }
-  })
-
-  if (encontra == 1) {
-    appendElements(resulBusca, cardLivro, imgCapa, btn, btnRemove)
-  } else {
+      appendElements(resulBusca, cardLivro, imgCapa, btn, btnRemove)
+    })
+  }else{
     showError(livro)
   }
-  
+
   const remove = removeCard(resulBusca)
   divBusca.addEventListener("click", remove)
 
