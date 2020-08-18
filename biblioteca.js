@@ -104,7 +104,7 @@ function cadastrar() {
 
   criarCard(cardLivro, nome, autor, editora, paginas, capalivro)
 
-  appendElements(divLivros, cardLivro, imgCapa, btn, btnRemove)
+  appendElements(divLivros, cardLivro)
 
   const remove = removeCard(divLivros)
   divLivros.addEventListener("click", remove)
