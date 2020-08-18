@@ -77,7 +77,6 @@ function removeCard(parentDiv) {
   }
 }
 
-
 function cadastrar() {
   const nome = document.getElementById("nomelivro").value
   const autor = document.getElementById("autorlivro").value
@@ -118,9 +117,6 @@ function buscar() {
   const divBusca = document.getElementById("busca")
   const resulBusca = document.getElementById("resulBusca")
   const cardLivro = document.createElement("div")
-  const imgCapa = document.createElement("img")
-  const btn = document.createElement("button")
-  const btnRemove = document.createElement("button")
 
   resulBusca.innerHTML = ""
   divBusca.append(resulBusca)
