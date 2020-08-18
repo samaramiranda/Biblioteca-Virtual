@@ -84,6 +84,15 @@ div#busca {
   align-items: center;
 }
 
+button#busca::before{
+  content: '\f002';
+  color: white;
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 16px;
+  right: 2px;
+}
+
 div#busca div div {
   display: inline-grid;
   background-color: rgb(255, 255, 255);
@@ -105,6 +114,32 @@ div#busca div div img {
   width: 80px;
   padding: 10px;
   margin: auto;
+}
+
+button#btn {
+  background-color: rgb(2, 87, 136);
+}
+
+button#btn::before{
+  content: '\f02d';
+  color: white;
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 16px;
+  right: 5px;
+}
+
+button#btnRemove {
+  background-color: rgb(160, 2, 2);
+}
+
+button#btnRemove::before{
+  content: '\f1f8';
+  color: white;
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 16px;
+  right: 5px;
 }
 
 div#todosLivros p {
