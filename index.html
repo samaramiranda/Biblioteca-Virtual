@@ -15,7 +15,7 @@
 <body>
   <header>Biblioteca Virtual</header>
   <section>
-    <form id="cadastro">
+    <form id="register">
       <h3>Cadastre um livro</h3>
       <label for="bookName">Insira o nome do livro:</label>
       <input type="text" name="bookName" id="bookName">
@@ -29,29 +29,29 @@
       <input type="text" name="bookCover" id="bookCover">
       <label for="synopsis">Insira a sinopse:</label>
       <textarea name="synopsis" id="synopsis" cols="50" rows="10"></textarea>
-      <button onclick="cadastrar()">Cadastre</button>
+      <button id="btnRegister">Cadastre</button>
     </form>
 
     <div id="myModal" class="modal">
       <div id="contentModel" class="modal-content">
-        <span id="close">&times;</span>
+        <span id="btnCloseModal">&times;</span>
         <h3 id="modalTitle"></h3>
         <p id="txtSynopsis"></p>
       </div>
     </div>
 
-    <div id="busca">
+    <div id="listOfBooksSearch">
       <h3>Busque um livro</h3>
-      <label for="searchName">Digite o livro que deseja procurar:</label>
-      <input type="text" name="searchName" id="searchName">
-      <button id="busca" onclick="buscar()">Buscar</button>
-      <div id="resulBusca"></div>
+      <label for="bookNameSearch">Digite o livro que deseja procurar:</label>
+      <input type="text" name="bookNameSearch" id="bookNameSearch">
+      <button id="btnSearch">Buscar</button>
+      <div id="foundBooks"></div>
     </div>
 
-    <div id="janelaLivros">
+    <div id="AllBooks">
       <h3>Todos os Livros</h3>
-      <div id="todosLivros">
-        <p  id="nenhumLivro">Nenhum livro cadastrado</p>
+      <div id="listOfAllBooks">
+        <p  id="emptyBookList">Nenhum livro cadastrado</p>
       </div>
     </div>
   </section>

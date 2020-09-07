@@ -1,29 +1,24 @@
-let todosLivros = []
+let allBooks = []
 const fields = document.querySelectorAll("input")
-const divLivros = document.querySelector("#todosLivros")
-const nenhumLivro = document.querySelector("#nenhumLivro")
+const listOfAllBooks = document.querySelector("#listOfAllBooks")
+const emptyBookList = document.querySelector("#emptyBookList")
 const modal = document.querySelector("#myModal")
 const modalTitle = document.querySelector("#modalTitle")
 const contentModel = document.querySelector("#contentModel")
-const close = document.querySelector("#close")
+const btnCloseModal = document.querySelector("#btnCloseModal")
 const synopsis = document.querySelector("#synopsis")
 const txtSynopsis = document.querySelector("#txtSynopsis")
+const btnRegister = document.querySelector("#btnRegister")
+const btnSearch = document.querySelector("#btnSearch")
 
-function buscarLivro() {
-  return todosLivros.findIndex((elem) => elem.bookName == (event.target.parentNode.className))
-}
-
-function limpar() {
-  fields.forEach(function (elem) {
-    elem.value = ""
-  })
-  synopsis.value = ""
+function findBook() {
+  return allBooks.findIndex((elem) => elem.bookName === (event.target.parentNode.className))
 }
 
 function showSynopsis(event) {
-  if (event.target.id == "btn") {
-    modalTitle.innerHTML = `Sinopse do livro "${todosLivros[buscarLivro()].bookName}"`
-    txtSynopsis.innerHTML = todosLivros[buscarLivro()].synopsis
+  if (event.target.id === "btn") {
+    modalTitle.innerHTML = `Sinopse do livro "${allBooks[findBook()].bookName}"`
+    txtSynopsis.innerHTML = allBooks[findBook()].synopsis
     modal.style.display = "block"
   }
 }
@@ -40,14 +35,21 @@ function closeModal(event) {
 }
 
 function closeModalWindow(event) {
-  if (event.target == modal) {
+  if (event.target === modal) {
     modal.style.display = "none";
   }
 }
 
-function criarCard(cardLivro, bookName, bookAuthor, bookPublisher, numberOfPages, bookCover) {
-  cardLivro.className = bookName
-  cardLivro.innerHTML = `
+function clearFields() {
+  fields.forEach(function (elem) {
+    elem.value = ""
+  })
+  synopsis.value = ""
+}
+
+function createCard(bookCard, bookName, bookAuthor, bookPublisher, numberOfPages, bookCover) {
+  bookCard.className = bookName
+  bookCard.innerHTML = `
     Nome: ${bookName}
     <br>Autor: ${bookAuthor}
     <br>Editora: ${bookPublisher}
@@ -58,35 +60,34 @@ function criarCard(cardLivro, bookName, bookAuthor, bookPublisher, numberOfPages
     `
 }
 
-function appendElements(divSelect, cardLivro) {
-  divSelect.append(cardLivro)
-
+function appendElements(divSelect, bookCard) {
+  divSelect.append(bookCard)
   divSelect.addEventListener("click", showSynopsis)
-  close.addEventListener("click", closeModal)
+  btnCloseModal.addEventListener("click", closeModal)
   window.addEventListener("click", closeModalWindow)
 }
 
 function removeCard(parentDiv) {
   return function remove(event) {
-    if (event.target.id == "btnRemove") {
+    if (event.target.id === "btnRemove") {
       parentDiv.removeChild(event.target.parentNode)
-      if (todosLivros.splice(buscarLivro(), 1)) {
+      if (allBooks.splice(findBook(), 1)) {
         alert(`Livro "${event.target.parentNode.className}" removido com sucesso!`)
       }
     }
   }
 }
 
-function cadastrar() {
-  const bookName = document.getElementById("bookName").value
-  const bookAuthor = document.getElementById("bookAuthor").value
-  const bookPublisher = document.getElementById("bookPublisher").value
-  const numberOfPages = Number(document.getElementById("numberOfPages").value)
-  const bookCover = document.getElementById("bookCover").value
+function registerBook() {
+  const bookName = document.querySelector("#bookName").value
+  const bookAuthor = document.querySelector("#bookAuthor").value
+  const bookPublisher = document.querySelector("#bookPublisher").value
+  const numberOfPages = Number(document.querySelector("#numberOfPages").value)
+  const bookCover = document.querySelector("#bookCover").value
 
   event.preventDefault()
 
-  todosLivros.push(
+  allBooks.push(
     {
       bookName,
       bookAuthor,
@@ -96,44 +97,46 @@ function cadastrar() {
       synopsis: synopsis.value
     })
 
-  nenhumLivro.remove()
-  const cardLivro = document.createElement("div")
+  emptyBookList.remove()
+  const bookCard = document.createElement("div")
 
-  criarCard(cardLivro, bookName, bookAuthor, bookPublisher, numberOfPages, bookCover)
+  createCard(bookCard, bookName, bookAuthor, bookPublisher, numberOfPages, bookCover)
+  appendElements(listOfAllBooks, bookCard)
 
-  appendElements(divLivros, cardLivro)
+  const remove = removeCard(listOfAllBooks)
+  listOfAllBooks.addEventListener("click", remove)
 
-  const remove = removeCard(divLivros)
-  divLivros.addEventListener("click", remove)
-
-  limpar()
+  clearFields()
 }
 
-function buscar() {
-  const searchName = document.getElementById("searchName").value
-  const divBusca = document.getElementById("busca")
-  const resulBusca = document.getElementById("resulBusca")
-  const cardLivro = document.createElement("div")
+function searchBook() {
+  const bookNameSearch = document.querySelector("#bookNameSearch").value
+  const listOfBooksSearch = document.querySelector("#listOfBooksSearch")
+  const foundBooks = document.querySelector("#foundBooks")
+  const bookCard = document.createElement("div")
 
-  resulBusca.innerHTML = ""
-  divBusca.append(resulBusca)
+  foundBooks.innerHTML = ""
+  listOfBooksSearch.append(foundBooks)
 
   // ESTÁ RETORNANDO SÓ UM LIVRO E NÃO TODOS DO MESMO NOME
-  const findBook = todosLivros.filter(elem => elem.bookName == searchName)
+  const findBook = allBooks.filter(elem => elem.bookName === bookNameSearch)
 
   console.log(findBook)
 
-  if (findBook.length != 0) {
+  if (findBook.length !== 0) {
     findBook.forEach(elem => {
-      criarCard(cardLivro, elem.bookName, elem.bookAuthor, elem.bookPublisher, elem.numberOfPages, elem.bookCover)
-      appendElements(resulBusca, cardLivro)
+      createCard(bookCard, elem.bookName, elem.bookAuthor, elem.bookPublisher, elem.numberOfPages, elem.bookCover)
+      appendElements(foundBooks, bookCard)
     })
   } else {
-    showError(searchName)
+    showError(bookNameSearch)
   }
 
-  const remove = removeCard(resulBusca)
-  divBusca.addEventListener("click", remove)
+  const remove = removeCard(foundBooks)
+  listOfBooksSearch.addEventListener("click", remove)
 
-  limpar()
+  clearFields()
 }
+
+btnRegister.addEventListener("click", registerBook)
+btnSearch.addEventListener("click", searchBook)

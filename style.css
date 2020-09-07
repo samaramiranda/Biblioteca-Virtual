@@ -27,14 +27,14 @@ h3 {
   font-size: 20px;
 }
 
-form#cadastro {
+form#register {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 40px;
 }
 
-form#cadastro input+label {
+form#register input+label {
   margin-top: 10px;
 }
 
@@ -77,14 +77,14 @@ button:hover {
   cursor: pointer;
 }
 
-div#busca {
+div#listOfBooksSearch {
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-button#busca::before{
+button#listOfBooksSearch::before{
   content: '\f002';
   color: white;
   position: relative;
@@ -93,7 +93,7 @@ button#busca::before{
   right: 2px;
 }
 
-div#busca div div {
+div#listOfBooksSearch div div {
   display: inline-grid;
   background-color: rgb(255, 255, 255);
   font-size: 14px;
@@ -109,7 +109,7 @@ div#busca div div {
   font-weight: 600;
 }
 
-div#busca div div img {
+div#listOfBooksSearch div div img {
   height: 115px;
   width: 80px;
   padding: 10px;
@@ -142,13 +142,13 @@ button#btnRemove::before{
   right: 5px;
 }
 
-div#todosLivros p {
+div#listOfAllBooks p {
   text-align: center;
   margin-bottom: 10px;
   font-size: 15px;
 }
 
-div#todosLivros div {
+div#listOfAllBooks div {
   display: inline-grid;
   background-color: rgb(255, 255, 255);
   font-size: 14px;
@@ -164,7 +164,7 @@ div#todosLivros div {
   font-weight: 600;
 }
 
-div#todosLivros img {
+div#listOfAllBooks img {
   height: 115px;
   width: 80px;
   padding: 10px;
@@ -175,7 +175,6 @@ button #btn {
   margin-top: 0px;
 }
 
-/* The Modal (background) */
 .modal {
   display: none;
   position: fixed;
@@ -189,7 +188,6 @@ button #btn {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
@@ -199,15 +197,14 @@ button #btn {
   border-radius: 8px;
 }
 
-/* The Close Button */
-#close {
+#btnCloseModal {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-#close:hover, #close:focus {
+#btnCloseModal:hover, #btnCloseModal:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
