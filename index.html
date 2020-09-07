@@ -17,33 +17,33 @@
   <section>
     <form id="cadastro">
       <h3>Cadastre um livro</h3>
-      <label for="nomelivro">Insira o nome do livro:</label>
-      <input type="text" name="nomelivro" id="nomelivro">
-      <label for="autorlivro">Insira o autor do livro:</label>
-      <input type="text" name="autorlivro" id="autorlivro">
-      <label for="editoralivro">Insira a editora do livro:</label>
-      <input type="text" name="editoralivro" id="editoralivro">
-      <label for="qtepag">Insira a quantidade de páginas:</label>
-      <input type="text" name="qtepag" id="qtepag">
-      <label for="capa">Insira o link da capa:</label>
-      <input type="text" name="capa" id="capa">
-      <label for="sinop">Insira a sinopse:</label>
-      <textarea name="sinop" id="sinop" cols="50" rows="10"></textarea>
+      <label for="bookName">Insira o nome do livro:</label>
+      <input type="text" name="bookName" id="bookName">
+      <label for="bookAuthor">Insira o autor do livro:</label>
+      <input type="text" name="bookAuthor" id="bookAuthor">
+      <label for="bookPublisher">Insira a editora do livro:</label>
+      <input type="text" name="bookPublisher" id="bookPublisher">
+      <label for="numberOfPages">Insira a quantidade de páginas:</label>
+      <input type="number" name="numberOfPages" id="numberOfPages">
+      <label for="bookCover">Insira o link da capa:</label>
+      <input type="text" name="bookCover" id="bookCover">
+      <label for="synopsis">Insira a sinopse:</label>
+      <textarea name="synopsis" id="synopsis" cols="50" rows="10"></textarea>
       <button onclick="cadastrar()">Cadastre</button>
     </form>
 
     <div id="myModal" class="modal">
       <div id="contentModel" class="modal-content">
         <span id="close">&times;</span>
-        <h3 id="tituloModal"></h3>
-        <p id="txtSinopse"></p>
+        <h3 id="modalTitle"></h3>
+        <p id="txtSynopsis"></p>
       </div>
     </div>
 
     <div id="busca">
       <h3>Busque um livro</h3>
-      <label for="nomeBusca">Digite o livro que deseja procurar:</label>
-      <input type="text" name="nomeBusca" id="nomeBusca">
+      <label for="searchName">Digite o livro que deseja procurar:</label>
+      <input type="text" name="searchName" id="searchName">
       <button id="busca" onclick="buscar()">Buscar</button>
       <div id="resulBusca"></div>
     </div>

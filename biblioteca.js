@@ -1,36 +1,36 @@
 let todosLivros = []
-const campos = document.querySelectorAll("input")
+const fields = document.querySelectorAll("input")
 const divLivros = document.querySelector("#todosLivros")
 const nenhumLivro = document.querySelector("#nenhumLivro")
 const modal = document.querySelector("#myModal")
-const tituloModal = document.querySelector("#tituloModal")
+const modalTitle = document.querySelector("#modalTitle")
 const contentModel = document.querySelector("#contentModel")
-const span = document.querySelector("#close")
-const sinopse = document.querySelector("#sinop")
-const txtSinopse = document.querySelector("#txtSinopse")
+const close = document.querySelector("#close")
+const synopsis = document.querySelector("#synopsis")
+const txtSynopsis = document.querySelector("#txtSynopsis")
 
 function buscarLivro() {
-  return todosLivros.findIndex((elem) => elem.nomeLivro == (event.target.parentNode.className))
+  return todosLivros.findIndex((elem) => elem.bookName == (event.target.parentNode.className))
 }
 
 function limpar() {
-  campos.forEach(function (elem) {
+  fields.forEach(function (elem) {
     elem.value = ""
   })
-  sinopse.value = ""
+  synopsis.value = ""
 }
 
-function showSinopse(event) {
+function showSynopsis(event) {
   if (event.target.id == "btn") {
-    tituloModal.innerHTML = "Sinopse"
-    txtSinopse.innerHTML = todosLivros[buscarLivro()].sinopse
+    modalTitle.innerHTML = `Sinopse do livro "${todosLivros[buscarLivro()].bookName}"`
+    txtSynopsis.innerHTML = todosLivros[buscarLivro()].synopsis
     modal.style.display = "block"
   }
 }
 
-function showError(nomeLivro) {
-  tituloModal.innerHTML = `Livro "${nomeLivro}" não encontrado!`
-  txtSinopse.innerHTML = ""
+function showError(bookName) {
+  modalTitle.innerHTML = `Livro "${bookName}" não encontrado!`
+  txtSynopsis.innerHTML = ""
   contentModel.style.width = "50%"
   modal.style.display = "block"
 }
@@ -45,14 +45,14 @@ function closeModalWindow(event) {
   }
 }
 
-function criarCard(cardLivro, nome, autor, editora, paginas, capa) {
-  cardLivro.className = nome
+function criarCard(cardLivro, bookName, bookAuthor, bookPublisher, numberOfPages, bookCover) {
+  cardLivro.className = bookName
   cardLivro.innerHTML = `
-    Nome: ${nome}
-    <br>Autor: ${autor}
-    <br>Editora: ${editora}
-    <br>Págs: ${paginas}
-    <img src="${capa}"/>
+    Nome: ${bookName}
+    <br>Autor: ${bookAuthor}
+    <br>Editora: ${bookPublisher}
+    <br>Págs: ${numberOfPages}
+    <img src="${bookCover}"/>
     <button id="btn">Sinopse</button>
     <button id="btnRemove">Remover</button>
     `
@@ -61,13 +61,13 @@ function criarCard(cardLivro, nome, autor, editora, paginas, capa) {
 function appendElements(divSelect, cardLivro) {
   divSelect.append(cardLivro)
 
-  divSelect.addEventListener("click", showSinopse)
-  span.addEventListener("click", closeModal)
+  divSelect.addEventListener("click", showSynopsis)
+  close.addEventListener("click", closeModal)
   window.addEventListener("click", closeModalWindow)
 }
 
 function removeCard(parentDiv) {
-  return function remove(event){
+  return function remove(event) {
     if (event.target.id == "btnRemove") {
       parentDiv.removeChild(event.target.parentNode)
       if (todosLivros.splice(buscarLivro(), 1)) {
@@ -78,31 +78,28 @@ function removeCard(parentDiv) {
 }
 
 function cadastrar() {
-  const nome = document.getElementById("nomelivro").value
-  const autor = document.getElementById("autorlivro").value
-  const editora = document.getElementById("editoralivro").value
-  const paginas = Number(document.getElementById("qtepag").value)
-  const capalivro = document.getElementById("capa").value
+  const bookName = document.getElementById("bookName").value
+  const bookAuthor = document.getElementById("bookAuthor").value
+  const bookPublisher = document.getElementById("bookPublisher").value
+  const numberOfPages = Number(document.getElementById("numberOfPages").value)
+  const bookCover = document.getElementById("bookCover").value
 
   event.preventDefault()
 
   todosLivros.push(
     {
-      nomeLivro: nome,
-      autorLivro: autor,
-      editoraLivro: editora,
-      paginasLivro: paginas,
-      capaLivro: capalivro,
-      sinopse: sinopse.value
+      bookName,
+      bookAuthor,
+      bookPublisher,
+      numberOfPages,
+      bookCover,
+      synopsis: synopsis.value
     })
 
   nenhumLivro.remove()
   const cardLivro = document.createElement("div")
-  const imgCapa = document.createElement("img")
-  const btn = document.createElement("button")
-  const btnRemove = document.createElement("button")
 
-  criarCard(cardLivro, nome, autor, editora, paginas, capalivro)
+  criarCard(cardLivro, bookName, bookAuthor, bookPublisher, numberOfPages, bookCover)
 
   appendElements(divLivros, cardLivro)
 
@@ -113,7 +110,7 @@ function cadastrar() {
 }
 
 function buscar() {
-  const livro = document.getElementById("nomeBusca").value
+  const searchName = document.getElementById("searchName").value
   const divBusca = document.getElementById("busca")
   const resulBusca = document.getElementById("resulBusca")
   const cardLivro = document.createElement("div")
@@ -121,15 +118,18 @@ function buscar() {
   resulBusca.innerHTML = ""
   divBusca.append(resulBusca)
 
-  const findBook = todosLivros.filter(elem => elem.nomeLivro == livro)
+  // ESTÁ RETORNANDO SÓ UM LIVRO E NÃO TODOS DO MESMO NOME
+  const findBook = todosLivros.filter(elem => elem.bookName == searchName)
 
-  if(findBook.length != 0){
+  console.log(findBook)
+
+  if (findBook.length != 0) {
     findBook.forEach(elem => {
-      criarCard(cardLivro, elem.nomeLivro, elem.autorLivro, elem.editoraLivro, elem.paginasLivro, elem.capaLivro)
+      criarCard(cardLivro, elem.bookName, elem.bookAuthor, elem.bookPublisher, elem.numberOfPages, elem.bookCover)
       appendElements(resulBusca, cardLivro)
     })
-  }else{
-    showError(livro)
+  } else {
+    showError(searchName)
   }
 
   const remove = removeCard(resulBusca)
