@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  font-size:60px;
+  font-size: 60px;
   font-weight: bold;
   text-align: center;
   margin: 20px;
@@ -13,7 +13,7 @@ header {
 }
 
 section {
-  background-color: rgb(207, 207, 207);
+  background-color: rgb(226, 226, 226);
   border-radius: 8px;
   width: 790px;
   max-width: 1000px;
@@ -93,7 +93,6 @@ button:hover {
   background-color: rgb(29, 153, 153);
   cursor: pointer;
 }
-
 div#listOfBooksSearch {
   margin-bottom: 40px;
   display: flex;
@@ -101,12 +100,12 @@ div#listOfBooksSearch {
   align-items: center;
 }
 
-button#btnSearch::before {
+button#listOfBooksSearch::before{
   content: '\f002';
   color: white;
   position: relative;
   font-family: FontAwesome;
-  font-size: 14px;
+  font-size: 16px;
   right: 2px;
 }
 
@@ -133,22 +132,22 @@ div#listOfBooksSearch div div img {
   margin: auto;
 }
 
-div#listOfAllBooks p {
-  justify-content: space-between;
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 15px;
-}
-
 div#listOfAllBooks {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
-  margin: auto 15px;
+  margin: 10px;
+}
+
+div#listOfAllBooks p#emptyBookList {
+  display: block;
+  text-align: center;
+  grid-column: 1 / 5;
 }
 
 div#listOfAllBooks div {
-  display: inline-grid;
+  display: flex;
+  flex-direction: column;
   background-color: rgb(255, 255, 255);
   font-size: 14px;
   padding: 10px;
@@ -161,10 +160,11 @@ div#listOfAllBooks div {
 }
 
 div#listOfAllBooks img {
+  justify-content: start;
   height: 115px;
   width: 80px;
   padding: 10px;
-  margin: auto;
+  margin: 10px auto;
 }
 
 button#btnSinopsys {
