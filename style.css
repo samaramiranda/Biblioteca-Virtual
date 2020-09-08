@@ -25,7 +25,11 @@ section {
 h3 {
   text-align: center;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 25px;
+}
+
+h3#titleAllBooks {
+  margin-bottom: 30px;
 }
 
 form#register {
@@ -40,14 +44,15 @@ form#register input+label {
 }
 
 label {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 input {
   margin-top: 2px;
   border-radius: 4px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   padding: 4px;
+  font-size: 16px;
   background-color: rgb(255, 255, 255);
   width: 300px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.493);
@@ -65,8 +70,9 @@ input[type=number] {
 
 textarea {
   margin-top: 2px;
+  font-size: 15px;
   border-radius: 4px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   background-color: rgb(255, 255, 255);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.493);
   resize: none;
@@ -74,7 +80,7 @@ textarea {
 }
 
 input:focus, textarea:focus {
-  border: 1px solid rgb(0, 114, 114);
+  border: 2px solid rgb(0, 114, 114);
 }
 
 button {
@@ -83,9 +89,9 @@ button {
   border: none;
   background-color: rgb(32, 126, 126);
   color: white;
-  padding: 5px;
+  padding: 8px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 16px;
   outline: none;
 }
 
@@ -93,50 +99,12 @@ button:hover {
   background-color: rgb(29, 153, 153);
   cursor: pointer;
 }
+
 div#listOfBooksSearch {
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-button#listOfBooksSearch::before{
-  content: '\f002';
-  color: white;
-  position: relative;
-  font-family: FontAwesome;
-  font-size: 16px;
-  right: 2px;
-}
-
-div#listOfBooksSearch div div {
-  display: inline-grid;
-  background-color: rgb(255, 255, 255);
-  font-size: 14px;
-  max-height: 300px;
-  min-width: 150px;
-  padding: 10px;
-  text-align: center;
-  margin: 12px;
-  border-radius: 8px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.493);
-  color: rgb(85, 85, 85);
-  font-family: 'Lora', serif;
-  font-weight: 600;
-}
-
-div#listOfBooksSearch div div img {
-  height: 115px;
-  width: 80px;
-  padding: 10px;
-  margin: auto;
-}
-
-div#listOfAllBooks {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 15px;
-  margin: 10px;
 }
 
 div#listOfAllBooks p#emptyBookList {
@@ -145,11 +113,18 @@ div#listOfAllBooks p#emptyBookList {
   grid-column: 1 / 5;
 }
 
-div#listOfAllBooks div {
+div#foundBooks, div#listOfAllBooks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  margin: 10px;
+}
+
+div#foundBooks div, div#listOfAllBooks div {
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
-  font-size: 14px;
+  font-size: 15px;
   padding: 10px;
   text-align: center;
   border-radius: 8px;
@@ -159,12 +134,26 @@ div#listOfAllBooks div {
   font-weight: 600;
 }
 
-div#listOfAllBooks img {
-  justify-content: start;
-  height: 115px;
-  width: 80px;
+p#bookTitle {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+}
+
+div#foundBooks img, div#listOfAllBooks img {
+  height: 130px;
+  width: 90px;
   padding: 10px;
   margin: 10px auto;
+}
+
+button#btnSearch::before{
+  content: '\f002';
+  color: white;
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 15px;
+  right: 3px;
 }
 
 button#btnSinopsys {

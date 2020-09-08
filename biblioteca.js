@@ -48,11 +48,11 @@ function clearFields() {
 function createCard(bookCard, bookName, bookAuthor, bookPublisher, numberOfPages, bookCover) {
   bookCard.className = bookName
   bookCard.innerHTML = `
-    Nome: ${bookName}
-    <br>Autor: ${bookAuthor}
+    <p id="bookTitle">${bookName}</p>
+    <img src="${bookCover}"/>
+    Autor: ${bookAuthor}
     <br>Editora: ${bookPublisher}
     <br>Págs: ${numberOfPages}
-    <img src="${bookCover}"/>
     <button id="btnSinopsys">Sinopse</button>
     <button id="btnRemove">Remover</button>
     `
