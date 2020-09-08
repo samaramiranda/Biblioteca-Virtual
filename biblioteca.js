@@ -1,11 +1,8 @@
 let allBooks = []
-const fields = document.querySelectorAll("input")
-const listOfAllBooks = document.querySelector("#listOfAllBooks")
 const emptyBookList = document.querySelector("#emptyBookList")
+const fields = document.querySelectorAll("input")
 const modal = document.querySelector("#myModal")
 const modalTitle = document.querySelector("#modalTitle")
-const contentModel = document.querySelector("#contentModel")
-const btnCloseModal = document.querySelector("#btnCloseModal")
 const synopsis = document.querySelector("#synopsis")
 const txtSynopsis = document.querySelector("#txtSynopsis")
 const btnRegister = document.querySelector("#btnRegister")
@@ -24,6 +21,7 @@ function showSynopsis(event) {
 }
 
 function showError(bookName) {
+  const contentModel = document.querySelector("#contentModel")
   modalTitle.innerHTML = `Livro "${bookName}" não encontrado!`
   txtSynopsis.innerHTML = ""
   contentModel.style.width = "50%"
@@ -61,6 +59,7 @@ function createCard(bookCard, bookName, bookAuthor, bookPublisher, numberOfPages
 }
 
 function appendElements(divSelect, bookCard) {
+  const btnCloseModal = document.querySelector("#btnCloseModal")
   divSelect.append(bookCard)
   divSelect.addEventListener("click", showSynopsis)
   btnCloseModal.addEventListener("click", closeModal)
@@ -79,6 +78,7 @@ function removeCard(parentDiv) {
 }
 
 function registerBook() {
+  const listOfAllBooks = document.querySelector("#listOfAllBooks")
   const bookName = document.querySelector("#bookName").value
   const bookAuthor = document.querySelector("#bookAuthor").value
   const bookPublisher = document.querySelector("#bookPublisher").value
