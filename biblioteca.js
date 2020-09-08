@@ -118,10 +118,7 @@ function searchBook() {
   foundBooks.innerHTML = ""
   listOfBooksSearch.append(foundBooks)
 
-  // ESTÁ RETORNANDO SÓ UM LIVRO E NÃO TODOS DO MESMO NOME
   const findBook = allBooks.filter(elem => elem.bookName === bookNameSearch)
-
-  console.log(findBook)
 
   if (findBook.length !== 0) {
     findBook.forEach(elem => {
