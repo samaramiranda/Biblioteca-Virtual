@@ -16,7 +16,7 @@ function findBook() {
 }
 
 function showSynopsis(event) {
-  if (event.target.id === "btn") {
+  if (event.target.id === "btnSinopsys") {
     modalTitle.innerHTML = `Sinopse do livro "${allBooks[findBook()].bookName}"`
     txtSynopsis.innerHTML = allBooks[findBook()].synopsis
     modal.style.display = "block"
@@ -55,7 +55,7 @@ function createCard(bookCard, bookName, bookAuthor, bookPublisher, numberOfPages
     <br>Editora: ${bookPublisher}
     <br>Págs: ${numberOfPages}
     <img src="${bookCover}"/>
-    <button id="btn">Sinopse</button>
+    <button id="btnSinopsys">Sinopse</button>
     <button id="btnRemove">Remover</button>
     `
 }
